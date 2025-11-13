@@ -1,2 +1,6 @@
 #return to CLI
 Ctrl + Alt + F2
+
+sudo nano /etc/default/grub
+  GRUB_TIMEOUT=0
+  GRUB_TIMEOUT_STYLE=hidden
