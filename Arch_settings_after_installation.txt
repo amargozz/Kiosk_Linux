@@ -1,0 +1,16 @@
+--login as root and user creation
+EDITOR=nano visudo
+  %wheel ALL=(ALL:ALL) ALL
+useradd -m -G wheel -s /bin/bash kiosk(username)
+passwd kiosk
+  kskP@55
+
+--network DHCP
+systemctl enable --now systemd-networkd
+nano /etc/systemd/network/20-wired.network
+  [Match]
+  Name=eno1    (interface name)
+  [Network]
+  DHCP=yes
+systemctl enable --now systemd-resolved  (enable dns)
+
