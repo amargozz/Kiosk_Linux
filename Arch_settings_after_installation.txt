@@ -1,4 +1,4 @@
-########## login as root and user creation ##########
+[########## LOGIN AS ROOT AND USER CREATION ##########]
 useradd -m -G wheel -s /bin/bash kiosk    # username
 passwd kiosk   
   kskP@55
@@ -7,7 +7,7 @@ EDITOR=nano visudo
 groupadd -r autologin
 gpasswd -a kiosk autologin
 
-########## network DHCP ##########
+[########## NETWORK DHCP ##########]
 systemctl enable --now systemd-networkd
 nano /etc/systemd/network/20-wired.network
   [Match]
@@ -17,7 +17,7 @@ nano /etc/systemd/network/20-wired.network
   DHCP=yes
 systemctl enable --now systemd-resolved  (enable dns)
 
-########## kiosk settings ##########
+[########## KIOSK SET UP ##########]
 sudo pacman -S xorg-server xorg-xinit firefox lightdm lightdm-gtk-greeter openbox
 sudo pacman -S --noconfirm unclutter xdotool openssh xorg-xset
 
