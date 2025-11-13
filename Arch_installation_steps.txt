@@ -29,6 +29,7 @@ arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/America/El_Salvador /etc/localtime
 hwclock --systohc
 pacman -S nano
+pacman -S sudo
 nano /etc/locale.gen
   en_US.UTF-8 UTF-8 (English)
 locale-gen
