@@ -4,6 +4,8 @@ EDITOR=nano visudo
 useradd -m -G wheel -s /bin/bash kiosk(username)
 passwd kiosk
   kskP@55
+groupadd -r autologin
+gpasswd -a kiosk autologin
 
 --network DHCP
 systemctl enable --now systemd-networkd
@@ -14,3 +16,32 @@ nano /etc/systemd/network/20-wired.network
   DHCP=yes
 systemctl enable --now systemd-resolved  (enable dns)
 
+--kiosk settings
+sudo pacman -S xorg-server xorg-xinit firefox lightdm lightdm-gtk-greeter openbox
+sudo pacman -S unclutter
+sudo pacman -S xdotool
+sudo pacman -S openssh
+sudo pacman -S xorg-xset
+
+sudo nano /etc/lightdm/lightdm.conf  
+  greeter-session=lightdm-gtk-greeter    ([Seat:*])
+  autologin-user=kiosk    
+  autologin-session=openbox
+sudo mkdir -p /etc/lightdm/lightdm.conf.d
+sudo nano /etc/lightdm/lightdm.conf.d/50-autologin.conf
+  [Seat:*]
+  autologin-user=kiosk
+  autologin-session=openbox
+  greeter-session=lightdm-gtk-greeter
+
+mkdir -p /home/kiosk/.config/openbox
+nano /home/kiosk/.config/openbox/autostart
+  unclutter -idle 0 &
+  xset -dpms
+  xset s off
+  firefox --kiosk "https://website.com
+
+sudo systemctl enable lightdm.service
+sudo systemctl start lightdm.service
+sudo systemctl enable sshd.service
+sudo systemctl start sshd.service
