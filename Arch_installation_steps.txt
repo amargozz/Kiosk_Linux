@@ -1,0 +1,47 @@
+ping ping.archlinux.org
+
+--identify disk to create partitions (Boot, SWAP, /)
+fdisk -l
+fdisk /dev/sda
+g                   (create GPT table)
+n  1  Enter  +1G    (Boot EFI System Partition)
+  t  1              (EFI systam)
+n  2  Enter  +4G    (SWAP)
+  t  2  19          (Linux swap)
+n  3  Enter  Enter  (/)
+w
+
+--Formating 
+mkfs.fat -F32 /dev/sda1      # EFI
+mkswap /dev/sda2
+swapon /dev/sda2
+mkfs.ext4 /dev/sda3          # Root
+
+mount /dev/sda3 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+
+--Arch installation
+  (With no modification in mirrorlist)
+pacstrap -K /mnt base linux linux-firmware
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+ln -sf /usr/share/zoneinfo/America/El_Salvador /etc/localtime
+hwclock --systohc
+pacman -S nano
+nano /etc/locale.gen
+  en_US.UTF-8 UTF-8 (English)
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "kiosk" > /etc/hostname
+passwd 
+  archkskP@55 (root password)
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cf
+
+exit
+reboot
+
+
+
