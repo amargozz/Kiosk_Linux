@@ -1,6 +1,6 @@
 ping ping.archlinux.org
 
-########## identify disk to create partitions (Boot, SWAP, /) ##########
+[########## IDENTIFY DISK AND PARTITIONS CREATION (Boot, SWAP, /) ##########]
 fdisk -l
 fdisk /dev/sda      # volume name
 g                   # create GPT table
@@ -11,7 +11,7 @@ n  2  Enter  +8G    # /sda2 SWAP
 n  3  Enter  Enter  # /sda3 /
 w
 
-########## Formating ##########
+[########## FORMATING ##########]
 mkfs.fat -F32 /dev/sda1
 mkswap /dev/sda2
 swapon /dev/sda2
@@ -21,7 +21,7 @@ mount /dev/sda3 /mnt
 mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 
-########## Arch installation ##########
+[########## ARCH INSTALLATION ##########]
   (With no modification in mirrorlist)
 pacstrap -K /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
