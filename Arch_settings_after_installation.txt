@@ -1,36 +1,29 @@
---login as root and user creation
+########## login as root and user creation ##########
+useradd -m -G wheel -s /bin/bash kiosk    # username
+passwd kiosk   
+  kskP@55
 EDITOR=nano visudo
   %wheel ALL=(ALL:ALL) ALL
-useradd -m -G wheel -s /bin/bash kiosk(username)
-passwd kiosk
-  kskP@55
 groupadd -r autologin
 gpasswd -a kiosk autologin
 
---network DHCP
+########## network DHCP ##########
 systemctl enable --now systemd-networkd
 nano /etc/systemd/network/20-wired.network
   [Match]
-  Name=eno1    (interface name)
+  Name=eno1      # Network infterface name
+
   [Network]
   DHCP=yes
 systemctl enable --now systemd-resolved  (enable dns)
 
---kiosk settings
+########## kiosk settings ##########
 sudo pacman -S xorg-server xorg-xinit firefox lightdm lightdm-gtk-greeter openbox
-sudo pacman -S unclutter
-sudo pacman -S xdotool
-sudo pacman -S openssh
-sudo pacman -S xorg-xset
+sudo pacman -S --noconfirm unclutter xdotool openssh xorg-xset
 
 sudo nano /etc/lightdm/lightdm.conf  
-  greeter-session=lightdm-gtk-greeter    ([Seat:*])
-  autologin-user=kiosk    
-  autologin-session=openbox
-sudo mkdir -p /etc/lightdm/lightdm.conf.d
-sudo nano /etc/lightdm/lightdm.conf.d/50-autologin.conf
   [Seat:*]
-  autologin-user=kiosk
+  autologin-user=kiosk    
   autologin-session=openbox
   greeter-session=lightdm-gtk-greeter
 
