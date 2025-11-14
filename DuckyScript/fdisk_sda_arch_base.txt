@@ -86,6 +86,7 @@ ENTER
 STRING archkskP@55
 ENTER
 
+REM Grub installation
 STRING pacman -S grub efibootmgr
 ENTER
 DELAY 10000
@@ -95,4 +96,5 @@ DELAY 500
 ENTER
 STRING grub-mkconfig -o /boot/grub/grub.cfg
 ENTER
+
 
