@@ -1,0 +1,97 @@
+REM /sda
+DEFAULT_DELAY 1000
+STRING fdisk /dev/sda
+ENTER
+STRING g
+ENTER
+STRING n
+ENTER
+STRING 1
+ENTER
+ENTER
+STRING +2G
+ENTER
+STRING t
+ENTER
+STRING 1
+ENTER
+STRING n
+ENTER
+STRING 2
+ENTER
+ENTER
+STRING +8G
+ENTER
+STRING t
+ENTER
+STRING 2
+ENTER
+STRING 19
+ENTER
+STRING n
+ENTER
+STRING 3
+ENTER
+ENTER
+ENTER
+STRING w
+ENTER
+
+STRING mkfs.fat -F32 /dev/sda1
+ENTER
+STRING mkswap /dev/sda2
+ENTER
+STRING swapon /dev/sda2
+ENTER
+STRING mkfs.ext4 /dev/sda3
+ENTER
+
+STRING pacstrap -K /mnt base linux linux-firmware
+DELAY 500
+ENTER
+DELAY 10000
+REM PAUSE UNTIL FIRMWARE ENDS
+
+STRING genfstab -U /mnt >> /mnt/etc/fstab
+DELAY 500
+ENTER
+DELAY 10000
+
+STRING arch-chroot /mnt
+ENTER
+STRING pacman -S --noconfirm nano sudo
+DELAY 10000
+STRING ln -sf /usr/share/zoneinfo/America/El_Salvador /etc/localtime
+DELAY 500
+ENTER
+STRING hwclock --systohc
+ENTER
+DELAY 5000
+STRING nano /etc/locale.gen
+ENTER
+DELAY 5000
+STRING echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+ENTER
+STRING locale-gen
+ENTER
+DELAY 5000
+STRING echo "LANG=en_US.UTF-8" > /etc/locale.conf
+ENTER
+STRING echo "kiosk" > /etc/hostname
+ENTER
+STRING passwd
+ENTER
+STRING archkskP@55
+ENTER
+STRING archkskP@55
+ENTER
+
+STRING pacman -S grub efibootmgr
+ENTER
+DELAY 10000
+REM PAUSE
+STRING grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+DELAY 500
+ENTER
+STRING grub-mkconfig -o /boot/grub/grub.cfg
+ENTER
