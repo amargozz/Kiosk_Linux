@@ -1,0 +1,44 @@
+REM Instalación básica de Arch Linux
+
+STRING mkfs.fat -F32 /dev/sda1
+ENTER
+DELAY 500
+STRING mkswap /dev/sda2
+ENTER
+DELAY 500
+STRING swapon /dev/sda2
+ENTER
+DELAY 500
+STRING mkfs.ext4 /dev/sda3
+ENTER
+DELAY 500
+STRING mount /dev/sda3 /mnt
+ENTER
+DELAY 500
+STRING mkdir /mnt/boot
+ENTER
+DELAY 500
+STRING mount /dev/sda1 /mnt/boot
+ENTER
+DELAY 500
+STRING pacstrap -K /mnt base linux linux-firmware
+ENTER
+STRING genfstab -U /mnt >> /mnt/etc/fstab
+ENTER
+STRING arch-chroot /mnt
+ENTER
+STRING pacman -S --noconfirm nano sudo grub efibootmgr
+ENTER
+STRING ln -sf /usr/share/zoneinfo/America/El_Salvador /etc/localtime
+ENTER
+STRING hwclock --systohc
+ENTER
+STRING echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+ENTER
+STRING locale-gen
+ENTER
+STRING echo "LANG=en_US.UTF-8" > /etc/locale.conf
+ENTER
+STRING echo "kiosk" > /etc/hostname
+ENTER
+STRING passwd
