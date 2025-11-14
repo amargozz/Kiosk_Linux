@@ -1,4 +1,4 @@
-REM /sda
+REM /sda at least 15GB
 DEFAULT_DELAY 1000
 STRING fdisk /dev/sda
 ENTER
@@ -95,3 +95,4 @@ DELAY 500
 ENTER
 STRING grub-mkconfig -o /boot/grub/grub.cfg
 ENTER
+
