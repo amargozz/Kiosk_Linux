@@ -19,7 +19,7 @@ systemctl enable --now systemd-resolved  (enable dns)
 
 [########## KIOSK SET UP ##########]
 sudo pacman -S xorg-server xorg-xinit firefox lightdm lightdm-gtk-greeter openbox
-sudo pacman -S --noconfirm unclutter xdotool openssh xorg-xset
+sudo pacman -S --noconfirm unclutter xdotool openssh xorg-xset xorg-xhost
 
 sudo nano /etc/lightdm/lightdm.conf  
   [Seat:*]
