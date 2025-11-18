@@ -19,23 +19,33 @@ systemctl enable --now systemd-resolved  (enable dns)
 
 [########## KIOSK SET UP ##########]
 sudo pacman -S xorg-server xorg-xinit firefox lightdm lightdm-gtk-greeter openbox
-sudo pacman -S --noconfirm unclutter xdotool openssh xorg-xset xorg-xhost
+sudo pacman -S --noconfirm unclutter #xdotool openssh xorg-xset xorg-xhost
 
 sudo nano /etc/lightdm/lightdm.conf  
   [Seat:*]
   autologin-user=kiosk    
-  autologin-session=openbox
-  greeter-session=lightdm-gtk-greeter
+  # autologin-session=openbox
+  # greeter-session=lightdm-gtk-greeter
 
 mkdir -p /home/kiosk/.config/openbox
 nano /home/kiosk/.config/openbox/autostart
   unclutter -idle 0 &
   export DISPLAY=:0
-  xhost +SI:localuser:kiosk
-  xhost +local:
+  # xhost +SI:localuser:kiosk
+  # xhost +local:
   xset -dpms
   xset s off
   firefox --kiosk "https://website.com
+
+[########## REFRESH BASH ##########]
+nano refre.sh
+  #!/bin/bash
+  export DISPLAY=:0
+  export XAUTHORITY=/home/kiosk/.Xauthority
+  pkill firefox
+  sleep 1
+  firefox --kiosk "https://amcor.com" &
+# Run with "sudo -u kiosk bash F5.sh"
 
 sudo systemctl enable lightdm.service
 sudo systemctl start lightdm.service
