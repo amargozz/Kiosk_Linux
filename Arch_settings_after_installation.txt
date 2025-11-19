@@ -18,8 +18,8 @@ nano /etc/systemd/network/20-wired.network
 systemctl enable --now systemd-resolved  (enable dns)
 
 [########## KIOSK SET UP ##########]
-sudo pacman -S xorg-server xorg-xset firefox lightdm openbox unclutter openssh
-sudo pacman -S --noconfirm #xorg-xhost #xorg-xinit #lightdm-gtk-greeter #xdotool 
+sudo pacman -S xorg-server xorg-xset firefox lightdm lightdm-gtk-greeter openbox unclutter openssh
+sudo pacman -S --noconfirm #xorg-xhost #xorg-xinit #xdotool 
 
 sudo nano /etc/lightdm/lightdm.conf  
   [Seat:*]
