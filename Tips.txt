@@ -1,7 +1,9 @@
 # return to CLI
 Ctrl + Alt + F2
+# return to GUI
+Ctrl + Alt + F7
 
-# hidden boot menu and no timeout
+# hidden grub menu and no timeout
 sudo nano /etc/default/grub
   GRUB_TIMEOUT=0
   GRUB_TIMEOUT_STYLE=hidden
