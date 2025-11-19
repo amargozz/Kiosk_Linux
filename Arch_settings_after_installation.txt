@@ -18,8 +18,8 @@ nano /etc/systemd/network/20-wired.network
 systemctl enable --now systemd-resolved  (enable dns)
 
 [########## KIOSK SET UP ##########]
-sudo pacman -S xorg-server xorg-xinit firefox lightdm lightdm-gtk-greeter openbox
-sudo pacman -S --noconfirm unclutter #xdotool openssh xorg-xset xorg-xhost
+sudo pacman -S xorg-server xorg-xset firefox lightdm openbox unclutter openssh
+sudo pacman -S --noconfirm #xorg-xhost #xorg-xinit #lightdm-gtk-greeter #xdotool 
 
 sudo nano /etc/lightdm/lightdm.conf  
   [Seat:*]
@@ -35,7 +35,7 @@ nano /home/kiosk/.config/openbox/autostart
   # xhost +local:
   xset -dpms
   xset s off
-  firefox --kiosk "https://website.com
+  firefox --kiosk "https://website.com"
 
 [########## REFRESH BASH ##########]
 nano refre.sh
@@ -45,9 +45,9 @@ nano refre.sh
   pkill firefox
   sleep 1
   firefox --kiosk "https://amcor.com" &
-# Run with "sudo -u kiosk bash F5.sh"
+# Run with "sudo -u kiosk sh F5.sh"
 
-sudo systemctl enable lightdm.service
-sudo systemctl start lightdm.service
 sudo systemctl enable sshd.service
+sudo systemctl enable lightdm.service
 sudo systemctl start sshd.service
+sudo systemctl start lightdm.service
