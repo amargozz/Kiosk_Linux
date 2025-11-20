@@ -31,7 +31,7 @@ nano /home/kiosk/.config/openbox/autostart
   xset s off -dpms
   firefox --kiosk "https://website.com"
 
-[########## REFRESH BASH ##########]
+[########## REFRESH BROWSER WINDOW ##########]
 nano refre.sh
   #!/bin/bash
   export DISPLAY=:0
