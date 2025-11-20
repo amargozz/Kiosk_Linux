@@ -1,7 +1,7 @@
 [########## LOGIN AS ROOT AND USER CREATION ##########]
 useradd -m -G wheel -s /bin/bash kiosk    # username
 passwd kiosk   
-  kskP@55
+  kioskPa$$word
 EDITOR=nano visudo
   %wheel ALL=(ALL:ALL) ALL
 groupadd -r autologin
