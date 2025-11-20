@@ -39,7 +39,7 @@ nano refre.sh
   pkill firefox
   sleep 1
   firefox --kiosk "https://website.com" &
-# Run with "sudo -u kiosk sh F5.sh"
+# Run with "sudo -u kiosk sh refre.sh"
 
 sudo systemctl enable sshd.service
 sudo systemctl enable lightdm.service
