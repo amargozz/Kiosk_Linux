@@ -18,7 +18,7 @@ nano /etc/systemd/network/20-wired.network
 systemctl enable --now systemd-resolved    # enable dns
 
 [########## KIOSK SET UP ##########]
-sudo pacman -S xorg-server xorg-xset firefox lightdm lightdm-gtk-greeter openbox unclutter openssh
+sudo pacman -S xorg-server xorg-xset xorg-xsetroot firefox lightdm lightdm-gtk-greeter openbox #unclutter openssh
 
 sudo nano /etc/lightdm/lightdm.conf  
   [Seat:*]
@@ -27,9 +27,10 @@ sudo nano /etc/lightdm/lightdm.conf
 mkdir -p /home/kiosk/.config/openbox
 nano /home/kiosk/.config/openbox/autostart
   export DISPLAY=:0
-  unclutter -idle 0 &
+  # unclutter -idle 0 &
   xset s off -dpms
   firefox --kiosk "https://website.com"
+  xsetroot -cursor_name none &
 
 [########## REFRESH BASH ##########]
 nano refre.sh
