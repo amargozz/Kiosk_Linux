@@ -38,7 +38,7 @@ nano refre.sh
   export DISPLAY=:0
   pkill firefox
   sleep 1
-  firefox --kiosk "https://amcor.com" &
+  firefox --kiosk "https://website.com" &
 # Run with "sudo -u kiosk sh F5.sh"
 
 sudo systemctl enable sshd.service
