@@ -6,13 +6,11 @@ Ctrl + Alt + F7
 # hidden grub menu and no timeout
 sudo nano /etc/default/grub
   GRUB_TIMEOUT=0
-  GRUB_TIMEOUT_STYLE=hidden
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # static IP
 [Match]
 Name=en01
-
 [Network]
 Address=192.168.1.100/24
 Gateway=192.168.1.1
