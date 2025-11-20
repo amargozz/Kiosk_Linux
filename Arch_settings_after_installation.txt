@@ -26,10 +26,9 @@ sudo nano /etc/lightdm/lightdm.conf
 
 mkdir -p /home/kiosk/.config/openbox
 nano /home/kiosk/.config/openbox/autostart
-  unclutter -idle 0 &
   export DISPLAY=:0
-  xset -dpms
-  xset s off
+  unclutter -idle 0 &
+  xset s off -dpms
   firefox --kiosk "https://website.com"
 
 [########## REFRESH BASH ##########]
@@ -37,11 +36,9 @@ nano refre.sh
   #!/bin/bash
   export DISPLAY=:0
   pkill firefox
-  sleep 1
+  sleep 1.5
   firefox --kiosk "https://website.com" &
 # Run with "sudo -u kiosk sh refre.sh"
 
 sudo systemctl enable sshd.service
 sudo systemctl enable lightdm.service
-sudo systemctl start sshd.service
-sudo systemctl start lightdm.service
