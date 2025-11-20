@@ -17,7 +17,7 @@ Gateway=192.168.1.1
 DNS=8.8.8.8
 
 # disable USB ports
-sudo nano /etc/udev/rules.d/99-disable-usb.rules
+sudo nano /etc/udev/rules.d/99-usb-disable.rules
   SUBSYSTEM=="usb", ATTR{authorized}="0"
     # execute "sudo udevadm control --reload" then reboot
     # to revert just rename or delete the file
