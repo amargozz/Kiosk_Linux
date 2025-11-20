@@ -15,7 +15,7 @@ nano /etc/systemd/network/20-wired.network
 
   [Network]
   DHCP=yes
-systemctl enable --now systemd-resolved  (enable dns)
+systemctl enable --now systemd-resolved    # enable dns
 
 [########## KIOSK SET UP ##########]
 sudo pacman -S xorg-server xorg-xset firefox lightdm lightdm-gtk-greeter openbox unclutter openssh
