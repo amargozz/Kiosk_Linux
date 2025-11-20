@@ -42,3 +42,15 @@ nano refre.sh
 
 sudo systemctl enable sshd.service
 sudo systemctl enable lightdm.service
+
+[########## SKIP GRUB TIMEOUT ##########]
+# hidden grub menu and no timeout
+sudo nano /etc/default/grub
+  GRUB_TIMEOUT=0
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+[########## DISABLE USB PORTS ##########]
+sudo nano /etc/udev/rules.d/99-usb-disable.rules
+  SUBSYSTEM=="usb", ATTR{authorized}="0"
+sudo udevadm control --reload    # reboot
+
