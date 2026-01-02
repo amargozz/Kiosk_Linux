@@ -22,5 +22,13 @@ sudo nano /etc/udev/rules.d/99-usb-disable.rules
     # execute "sudo udevadm control --reload" then reboot
     # to revert just rename or delete the file and reboot
 
+# do shutdown without sudo rights
+sudo nano /etc/polkit-1/rules.d/50-shutdown.rules
 
+polkit.addRule(function(action, subject) {
+if(
+(action.id == "org.freedesktop.login1.power-off" ||
+action.id == "org.freedesktop.login1.reboot") &&
+subject.user == "user")
+{return polkit.Result.YES;}});
 
