@@ -26,10 +26,7 @@ sudo nano /etc/lightdm/lightdm.conf
 
 mkdir -p /home/kiosk/.config/openbox
 nano /home/kiosk/.config/openbox/autostart
-  export DISPLAY=:0
-  unclutter -idle 0 &
-  xset s off -dpms
-  firefox --kiosk "https://website.com"
+  bash /home/kiosk/refre.sh
 
 [########## REFRESH BROWSER WINDOW ##########]
 nano refre.sh
