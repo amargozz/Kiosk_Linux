@@ -33,6 +33,7 @@ nano refre.sh
   #!/bin/bash
   export DISPLAY=:0
   pkill firefox
+  rm -rf ~/.cache/mozilla/firefox/*
   sleep 1.5
   firefox --kiosk "https://website.com" &
 # Run with "sudo -u kiosk sh refre.sh"
